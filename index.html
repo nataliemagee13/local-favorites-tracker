@@ -3,79 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Keep track of the local places you love.">
     <title>Local Favorites Tracker</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="site-shell">
-        <header class="site-header">
-            <div class="container header-content">
-                <a class="brand" href="index.html"><span class="brand-mark">Local</span> Favorites Tracker</a>
-                <p class="header-note">My favorite places</p>
-            </div>
-        </header>
+    <header>
+        <h1>Local Favorites Tracker</h1>
+        <p>Keep the places worth returning to close at hand.</p>
+    </header>
 
-        <main>
-            <section class="intro-section container" aria-labelledby="page-title">
-                <p class="eyebrow">Welcome</p>
-                <h1 id="page-title">My favorite local places</h1>
-                <p class="intro-copy">Use this page to keep track of places I want to remember and visit again.</p>
-            </section>
-
-            <section class="add-section" aria-labelledby="add-heading">
-                <div class="container">
-                    <div class="section-heading">
-                        <h2 id="add-heading">Add a favorite</h2>
-                        <p class="section-kicker">Add a place below</p>
-                    </div>
-                    <form id="add-favorite-form" class="form-grid">
-                        <div class="form-group">
-                            <label for="name">Place name *</label>
-                            <input type="text" id="name" name="name" required aria-required="true" placeholder="e.g. Riverbend Books">
-                        </div>
-                        <div class="form-group">
-                            <label for="category">Category *</label>
-                            <select id="category" name="category" required aria-required="true">
-                                <option value="" disabled selected>Choose a category</option>
-                                <option value="food">Food &amp; drink</option>
-                                <option value="outdoors">Outdoors</option>
-                                <option value="shopping">Shopping</option>
-                                <option value="culture">Arts &amp; culture</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="rating">Rating *</label>
-                            <select id="rating" name="rating" required aria-required="true">
-                                <option value="" disabled selected>Give it a rating</option>
-                                <option value="5">5 - Essential</option>
-                                <option value="4">4 - Excellent</option>
-                                <option value="3">3 - Solid</option>
-                                <option value="2">2 - Needs another visit</option>
-                                <option value="1">1 - Not for me</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="notes">Notes</label>
-                            <textarea id="notes" name="notes" placeholder="What should you remember about this place?"></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Add favorite</button>
-                        </div>
-                    </form>
+    <main>
+        <section class="add-section">
+            <h2>Add New Favorite</h2>
+            <form id="add-favorite-form">
+                <div class="form-group">
+                    <label for="name">Place Name *</label>
+                    <input type="text" id="name" name="name" required aria-required="true">
                 </div>
-            </section>
 
-            <section class="controls-section container" aria-label="Search and filter favorites">
-                <div class="search-field">
-                    <label for="search-input">Search favorites</label>
-                    <input type="search" id="search-input" name="search" placeholder="Search names and notes">
-                </div>
-                <div class="search-field">
-                    <label for="category-filter">Filter by category</label>
-                    <select id="category-filter" name="category-filter">
-                        <option value="all">All categories</option>
+                <div class="form-group">
+                    <label for="category">Category *</label>
+                    <select id="category" name="category" required aria-required="true">
+                        <option value="">Choose a category</option>
                         <option value="food">Food &amp; drink</option>
                         <option value="outdoors">Outdoors</option>
                         <option value="shopping">Shopping</option>
@@ -83,26 +32,53 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-            </section>
 
-            <section class="favorites-section container" aria-labelledby="favorites-heading">
-                <div class="section-heading">
-                    <h2 id="favorites-heading">Your favorites</h2>
-                    <p class="section-kicker">0 places saved</p>
+                <div class="form-group">
+                    <label for="rating">Rating *</label>
+                    <select id="rating" name="rating" required aria-required="true">
+                        <option value="">Choose a rating</option>
+                        <option value="5">5 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="2">2 stars</option>
+                        <option value="1">1 star</option>
+                    </select>
                 </div>
-                <div id="favorites-list" class="favorites-grid">
-                    <p class="empty-message">No favorites yet. Add your first favorite place above!</p>
-                </div>
-            </section>
-        </main>
 
-        <footer class="site-footer">
-            <div class="container footer-content">
-                <p>Local Favorites Tracker</p>
-                <p>A simple list of places I like.</p>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Favorite</button>
+            </form>
+        </section>
+
+        <section class="controls-section">
+            <label for="search-input">Search favorites</label>
+            <input type="search" id="search-input" placeholder="Search names and notes">
+
+            <label for="category-filter">Filter by category</label>
+            <select id="category-filter">
+                <option value="all">All categories</option>
+                <option value="food">Food &amp; drink</option>
+                <option value="outdoors">Outdoors</option>
+                <option value="shopping">Shopping</option>
+                <option value="culture">Arts &amp; culture</option>
+                <option value="other">Other</option>
+            </select>
+        </section>
+
+        <section class="favorites-section">
+            <div id="favorites-list" class="favorites-grid">
+                <p class="empty-message">No favorites yet. Add your first favorite place above!</p>
             </div>
-        </footer>
-    </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Natalie Magee</p>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>
