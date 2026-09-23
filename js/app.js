@@ -107,6 +107,7 @@ function addFavorite(event) {
     };
 
     favorites.push(newFavorite);
+    saveFavorites();
     form.reset(); // clears the form for the next one
     displayFavorites();
 }
@@ -119,7 +120,27 @@ function deleteFavorite(index) {
 
     if (confirm(`Delete "${favorite.name}"?`)) {
         favorites.splice(index, 1);
+        saveFavorites();
         searchFavorites();
+    }
+}
+
+// saves my spots so they're still here tomorrow
+function saveFavorites() {
+    try {
+        localStorage.setItem('localFavorites', JSON.stringify(favorites));
+    } catch (error) {
+        alert('Unable to save favorites. Storage may be disabled.');
+    }
+}
+
+// loads my saved spots when I come back
+function loadFavorites() {
+    try {
+        const saved = localStorage.getItem('localFavorites');
+        favorites = saved ? JSON.parse(saved) : [];
+    } catch (error) {
+        favorites = [];
     }
 }
 
@@ -171,4 +192,5 @@ function displayFavorites() {
     searchFavorites();
 }
 
+loadFavorites();
 displayFavorites();
