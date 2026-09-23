@@ -62,3 +62,26 @@ console.log(currentRating);
 
 console.log("⭐".repeat(myFavorite.rating) + " " + myFavorite.name + " (" + myFavorite.category + ") - try the " + myFavorite.favoriteItem);
 console.log("⭐".repeat(secondFavorite.rating) + " " + secondFavorite.name + " (" + secondFavorite.category + ") - try the " + secondFavorite.favoriteItem);
+// ---------- LAB 13 ----------
+
+// functions: write it once, use it whenever
+function greetFavorite(placeName, rating) {
+    console.log(placeName + ' has ' + rating + ' stars!');
+}
+
+greetFavorite('Starbucks', 5);
+greetFavorite(myFavorite.name, myFavorite.rating); // using my object from lab 12
+
+// DOM: grabbing the place name input from my form
+const nameInput = document.getElementById('name');
+console.log(nameInput.value); // empty on page load since nothing's typed yet
+
+// event listener: runs when someone hits Add Favorite
+const practiceForm = document.getElementById('add-favorite-form');
+
+function handleSubmit(event) {
+    event.preventDefault(); // stops the page from reloading
+    console.log('You typed: ' + nameInput.value);
+}
+
+practiceForm.addEventListener('submit', handleSubmit); // no () so it waits for the submit
