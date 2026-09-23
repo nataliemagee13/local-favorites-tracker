@@ -3,6 +3,11 @@ let favorites = []; // all my saved spots live here
 
 const form = document.getElementById('add-favorite-form');
 const favoritesList = document.getElementById('favorites-list');
+const searchInput = document.getElementById('search-input');
+const categoryFilter = document.getElementById('category-filter');
+
+searchInput.addEventListener('input', searchFavorites);
+categoryFilter.addEventListener('change', searchFavorites);
 // Store today's date.
 let today = new Date().toLocaleDateString();
 
@@ -108,16 +113,44 @@ function addFavorite(event) {
 
 form.addEventListener('submit', addFavorite);
 
-// redraws the whole list so the page matches the array
-function displayFavorites() {
-    favoritesList.innerHTML = ''; // start fresh so nothing doubles up
+// removes one spot and redraws what I can see
+function deleteFavorite(index) {
+    const favorite = favorites[index];
+
+    if (confirm(`Delete "${favorite.name}"?`)) {
+        favorites.splice(index, 1);
+        searchFavorites();
+    }
+}
+
+// searches my saved spots and applies the category filter
+function searchFavorites() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    const selectedCategory = categoryFilter.value;
+    const filtered = favorites.filter(function(favorite) {
+        const matchesSearch = searchText === '' ||
+            favorite.name.toLowerCase().includes(searchText) ||
+            favorite.notes.toLowerCase().includes(searchText) ||
+            favorite.favoriteItem.toLowerCase().includes(searchText);
+        const matchesCategory = selectedCategory === 'all' || favorite.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    favoritesList.innerHTML = '';
 
     if (favorites.length === 0) {
         favoritesList.innerHTML = '<p class="empty-message">No spots saved yet! Add your first favorite place above so you never lose track of it.</p>';
         return;
     }
 
-    favorites.forEach(function(favorite) {
+    if (filtered.length === 0) {
+        favoritesList.innerHTML = '<p class="empty-message">No spots match your search. Try a different word or category.</p>';
+        return;
+    }
+
+    filtered.forEach(function(favorite) {
+        const index = favorites.indexOf(favorite);
         const stars = '⭐'.repeat(favorite.rating);
         favoritesList.innerHTML += `
             <div class="favorite-card">
@@ -127,9 +160,15 @@ function displayFavorites() {
                 <p class="favorite-notes">${favorite.notes}</p>
                 <p class="favorite-item">Go-to: ${favorite.favoriteItem}</p>
                 <p class="favorite-date">Added: ${favorite.dateAdded}</p>
+                <button class="btn-danger" onclick="deleteFavorite(${index})">Delete</button>
             </div>`;
     });
 }
 
-// show the list (or empty message) as soon as the page loads
+function displayFavorites() {
+    searchInput.value = '';
+    categoryFilter.value = 'all';
+    searchFavorites();
+}
+
 displayFavorites();
