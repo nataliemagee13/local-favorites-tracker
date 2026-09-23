@@ -77,17 +77,6 @@ function greetFavorite(placeName, rating) {
 greetFavorite('Starbucks', 5);
 greetFavorite(myFavorite.name, myFavorite.rating); // using my object from lab 12
 
-// DOM: grabbing the place name input from my form
-const nameInput = document.getElementById('name');
-console.log(nameInput.value); // empty on page load since nothing's typed yet
-
-// event listener: runs when someone hits Add Favorite
-const practiceForm = document.getElementById('add-favorite-form');
-
-function handleSubmit(event) {
-    event.preventDefault(); // stops the page from reloading
-    console.log('You typed: ' + nameInput.value);
-}
 // ---------- LAB 13.5 ----------
 
 // runs when someone adds a new spot
