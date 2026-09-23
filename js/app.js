@@ -1,3 +1,8 @@
+// ---------- tracker setup ----------
+let favorites = []; // all my saved spots live here
+
+const form = document.getElementById('add-favorite-form');
+const favoritesList = document.getElementById('favorites-list');
 // Store today's date.
 let today = new Date().toLocaleDateString();
 
@@ -83,5 +88,59 @@ function handleSubmit(event) {
     event.preventDefault(); // stops the page from reloading
     console.log('You typed: ' + nameInput.value);
 }
+// ---------- LAB 13.5 ----------
 
-practiceForm.addEventListener('submit', handleSubmit); // no () so it waits for the submit
+// runs when someone adds a new spot
+function addFavorite(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const category = document.getElementById('category').value;
+
+    // stops it if the name is just spaces or no category is picked
+    if (!name || !category) {
+        alert('Please fill in name and category!');
+        return;
+    }
+
+    const newFavorite = {
+        name: name,
+        category: category,
+        rating: parseInt(document.getElementById('rating').value), // makes "5" into 5
+        favoriteItem: document.getElementById('favorite-item').value.trim(),
+        notes: document.getElementById('notes').value.trim(),
+        dateAdded: new Date().toLocaleDateString()
+    };
+
+    favorites.push(newFavorite);
+    form.reset(); // clears the form for the next one
+    displayFavorites();
+}
+
+form.addEventListener('submit', addFavorite);
+
+// redraws the whole list so the page matches the array
+function displayFavorites() {
+    favoritesList.innerHTML = ''; // start fresh so nothing doubles up
+
+    if (favorites.length === 0) {
+        favoritesList.innerHTML = '<p class="empty-message">No spots saved yet! Add your first favorite place above so you never lose track of it.</p>';
+        return;
+    }
+
+    favorites.forEach(function(favorite) {
+        const stars = '⭐'.repeat(favorite.rating);
+        favoritesList.innerHTML += `
+            <div class="favorite-card">
+                <h3>${favorite.name}</h3>
+                <span class="favorite-category">${favorite.category}</span>
+                <div class="favorite-rating">${stars} (${favorite.rating}/5)</div>
+                <p class="favorite-notes">${favorite.notes}</p>
+                <p class="favorite-item">Go-to: ${favorite.favoriteItem}</p>
+                <p class="favorite-date">Added: ${favorite.dateAdded}</p>
+            </div>`;
+    });
+}
+
+// show the list (or empty message) as soon as the page loads
+displayFavorites();
