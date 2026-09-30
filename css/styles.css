@@ -31,23 +31,15 @@ textarea {
 
 /* 02. DESIGN TOKENS */
 :root {
-    --cream: #F3EFDF;
-    --blush: #F6E3D6;
-    --mint: #D9E3E3;
-    --paper: #FFFDF9;
-    --ink: #3A3A3A;
-    --muted: #6F6B69;
-    --pink: #D63F95;
-    --pink-deep: #B92C72;
-    --coral: #E8574A;
-    --orange: #F2A33A;
-    --olive: #C4CB5A;
-    --purple: #9B5BA5;
-    --sky: #7FC8DC;
-    --blue: #5B8FC9;
-    --border: rgba(58, 58, 58, 0.14);
-    --shadow-soft: 0 10px 25px rgba(90, 62, 63, 0.12);
-    --shadow-card: 0 6px 18px rgba(90, 62, 63, 0.1);
+    --background: #ffdfbd;
+    --paper: #fffaf2;
+    --ink: #164b59;
+    --muted: #50747b;
+    --blue: #20aec0;
+    --blue-light: #d8f4f1;
+    --coral: #1fcbd1;
+    --yellow: #ffc69f;
+    --border: #efb48b;
 
     --space-xs: 0.375rem;
     --space-sm: 0.625rem;
@@ -57,9 +49,8 @@ textarea {
     --space-2xl: 3rem;
 
     --content-width: 72rem;
-    --radius-sm: 0.35rem;
-    --radius-md: 0.9rem;
-    --radius-lg: 1.2rem;
+    --radius-sm: 0.45rem;
+    --radius-md: 0.8rem;
 }
 
 /* 03. BASE */
@@ -67,20 +58,18 @@ body {
     min-width: 0;
     max-width: 100%;
     overflow-x: hidden;
-    background: var(--cream);
+    background: var(--background);
     color: var(--ink);
-    font-family: "Nunito", Arial, sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-    letter-spacing: 0.01em;
 }
 
 h1,
 h2,
 h3 {
-    font-family: "Chewy", "Arial Rounded MT Bold", sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
     line-height: 1.1;
-    letter-spacing: 0.03em;
 }
 
 p:last-child {
@@ -95,7 +84,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-    outline: 3px solid var(--pink);
+    outline: 3px solid var(--blue);
     outline-offset: 2px;
 }
 
@@ -113,61 +102,39 @@ main {
 /* 05. HEADER */
 header {
     margin: 1rem 0 2rem;
-    padding: 2.75rem 1.25rem 2.25rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)), linear-gradient(135deg, #f4d7df 0%, #f3efdf 38%, #ddead9 100%);
+    padding: 2.25rem 1.5rem;
+    background: var(--yellow);
     color: var(--ink);
-    border: 3px solid rgba(58, 58, 58, 0.08);
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-soft);
-    position: relative;
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    inset: 0.75rem;
-    border: 2px dashed rgba(58, 58, 58, 0.18);
+    border: 2px solid var(--ink);
     border-radius: 1rem;
-    pointer-events: none;
-}
-
-header h1,
-header p {
-    position: relative;
-    z-index: 1;
-    padding-inline: 0.25rem;
+    box-shadow: 5px 5px 0 var(--blue);
 }
 
 header h1 {
-    margin-bottom: 0.85rem;
-    font-size: clamp(2.3rem, 8vw, 5rem);
-    line-height: 0.9;
-    color: var(--pink);
-    text-shadow: 2px 2px 0 rgba(255,255,255,0.7), 4px 4px 0 rgba(214, 63, 149, 0.15);
-    transform: rotate(-1deg);
+    margin-bottom: 0.65rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--coral);
 }
 
 header p {
     max-width: 38rem;
     font-size: 1.05rem;
-    font-weight: 700;
-    color: rgba(58, 58, 58, 0.9);
+    color: var(--muted);
 }
 
 /* 06. SECTIONS */
 section {
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: rgba(255,255,255,0.35);
-    border: 2px solid rgba(58, 58, 58, 0.08);
-    border-radius: 1.35rem;
-    box-shadow: var(--shadow-card);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 }
 
 section h2 {
     margin-bottom: 1.2rem;
     font-size: clamp(1.75rem, 4vw, 2.3rem);
-    color: var(--ink);
+    color: var(--blue);
 }
 
 /* 07. FORMS */
@@ -186,18 +153,17 @@ textarea {
     padding: 0.8rem 0.9rem;
     font: inherit;
     color: var(--ink);
-    background: rgba(255,255,255,0.8);
-    border: 2px solid rgba(58, 58, 58, 0.12);
-    border-radius: 0.85rem;
-    box-shadow: inset 0 1px 2px rgba(58,58,58,0.04);
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: var(--sky);
-    box-shadow: 0 0 0 4px rgba(127, 200, 220, 0.22);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px rgba(63, 111, 159, 0.15);
 }
 
 .form-group {
@@ -211,50 +177,41 @@ textarea {
 
 /* 08. BUTTONS */
 .btn {
-    padding: 0.8rem 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0.03em;
-    border: none;
-    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+    border-radius: 0.65rem;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 button {
     font: inherit;
-    padding: 0.8rem 1.25rem;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 14px rgba(58,58,58,0.12);
+    transform: translateY(-1px);
+    border-color: var(--ink);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--pink) 0%, var(--coral) 100%);
+    background: var(--coral);
     color: white;
-    box-shadow: 0 8px 14px rgba(214, 63, 149, 0.22);
 }
 
 .btn-primary:hover {
-    filter: brightness(1.02);
+    background: #d95e42;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, var(--coral), var(--orange));
-    color: white;
-    font-weight: 800;
-    box-shadow: 0 8px 14px rgba(232, 87, 74, 0.2);
+    background: var(--paper);
+    color: var(--coral);
+    font-weight: 700;
 }
 
 /* 09. SEARCH / FILTER */
 .controls-section {
-    background: linear-gradient(135deg, rgba(217,227,227,0.8), rgba(246,227,214,0.8));
-    border-radius: 1.2rem;
+    background: var(--paper);
 }
 
 .controls-section label {
@@ -270,10 +227,10 @@ button:hover {
 
 .favorite-card {
     padding: 1.2rem 1.2rem 1rem;
-    background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(246,227,214,0.72));
-    border: 2px solid rgba(58,58,58,0.08);
-    border-radius: 1.2rem;
-    box-shadow: var(--shadow-card);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: 3px 3px 0 #ebe6dc;
     overflow: hidden;
 }
 
@@ -281,34 +238,33 @@ button:hover {
     margin-bottom: 0.5rem;
     color: var(--ink);
     font-size: clamp(1.5rem, 3vw, 2rem);
-    letter-spacing: 0.02em;
 }
 
 .favorite-category {
     display: inline-block;
     margin-bottom: 0.7rem;
-    padding: 0.35rem 0.7rem;
-    background: linear-gradient(135deg, var(--blue), var(--sky));
-    color: white;
+    padding: 0.2rem 0.5rem;
+    background: var(--blue-light);
+    color: var(--blue);
     font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
 }
 
 .favorite-rating {
     margin-bottom: 0.7rem;
     font-size: 1rem;
     font-weight: 800;
-    color: var(--ink);
+    color: var(--coral);
 }
 
 .favorite-notes,
 .favorite-item,
 .favorite-date {
     margin-bottom: 0.45rem;
-    color: rgba(58,58,58,0.86);
+    color: var(--muted);
 }
 
 .favorite-item {
@@ -324,9 +280,9 @@ button:hover {
 .empty-message {
     grid-column: 1 / -1;
     padding: 1.35rem;
-    background: rgba(255,255,255,0.5);
-    border: 2px dashed rgba(58,58,58,0.18);
-    border-radius: 1rem;
+    background: var(--paper);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
     font-weight: 700;
     color: var(--ink);
 }
