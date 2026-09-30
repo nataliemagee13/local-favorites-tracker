@@ -103,7 +103,7 @@ main {
 header {
     margin: 1rem 0 2rem;
     padding: 2.25rem 1.5rem;
-    background: var(--yellow);
+    background: var(--background);
     color: var(--ink);
     border: 2px solid var(--ink);
     border-radius: 1rem;
