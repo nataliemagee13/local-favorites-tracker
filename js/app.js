@@ -138,7 +138,8 @@ function saveFavorites() {
 function loadFavorites() {
     try {
         const saved = localStorage.getItem('localFavorites');
-        favorites = saved ? JSON.parse(saved) : [];
+        const parsedFavorites = saved ? JSON.parse(saved) : [];
+        favorites = Array.isArray(parsedFavorites) ? parsedFavorites : [];
     } catch (error) {
         favorites = [];
     }
@@ -150,9 +151,9 @@ function searchFavorites() {
     const selectedCategory = categoryFilter.value;
     const filtered = favorites.filter(function(favorite) {
         const matchesSearch = searchText === '' ||
-            favorite.name.toLowerCase().includes(searchText) ||
-            favorite.notes.toLowerCase().includes(searchText) ||
-            favorite.favoriteItem.toLowerCase().includes(searchText);
+            (favorite.name || '').toLowerCase().includes(searchText) ||
+            (favorite.notes || '').toLowerCase().includes(searchText) ||
+            (favorite.favoriteItem || '').toLowerCase().includes(searchText);
         const matchesCategory = selectedCategory === 'all' || favorite.category === selectedCategory;
 
         return matchesSearch && matchesCategory;
